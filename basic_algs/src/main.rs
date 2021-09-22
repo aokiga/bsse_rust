@@ -1,4 +1,4 @@
-fn find_max<I>(array: &[I; 10]) -> I where I: Ord, I: Copy {
+fn find_max<I: Ord + Copy>(array: &[I; 10]) -> I {
     let ans = array.iter().reduce(|acc, x| acc.max(x)).unwrap();
     *ans
 }
@@ -58,7 +58,7 @@ fn run_prime_examples() {
     test_prime_example(10000, 104729);
 }
 
-fn bin_search_position<I>(a: &[I; 10], key: I) -> Option<usize> where I: Ord, I: Eq {
+fn bin_search_position<I: Ord>(a: &[I; 10], key: I) -> Option<usize> {
     let mut l = 0;
     let mut r = 10;
     while r - l > 1 {
@@ -86,7 +86,7 @@ fn run_bin_search_examples() {
         let res = bin_search_position(&arr, key);
         assert_eq!(res, ans);
         println!("Key {}: {}", key, match ans {
-            Some(x) => format!("Found on pos {}", x.to_string()),
+            Some(x) => ["Found on pos ".to_string(), x.to_string()].concat(),
             None => "Not found".to_string(),
         })
     }
