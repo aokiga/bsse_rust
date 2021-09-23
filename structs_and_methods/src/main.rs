@@ -29,7 +29,7 @@ enum Figure {
 
 impl Rect {
     fn contains(&self, p: &Point) -> bool {
-        self.x < p.x && self.y < p.y && self.x + self.width > p.x && self.y + self.height > p.y
+        self.x <= p.x && self.y <= p.y && self.x + self.width >= p.x && self.y + self.height >= p.y
     }
 
     fn area(&self) -> f64 {
@@ -39,7 +39,7 @@ impl Rect {
 
 impl Circle {
     fn contains(&self, point: &Point) -> bool {
-        dist(&self.center, point) < self.radius
+        dist(&self.center, point) <= self.radius
     }
 
     fn area(&self) -> f64 {
