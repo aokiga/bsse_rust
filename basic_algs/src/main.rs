@@ -25,9 +25,14 @@ fn is_prime(n: u32) -> bool {
     if n == 1 {
         return false;
     }
-    let l = 2;
-    let r = (n as f32).sqrt().floor() as u32 + 1;
-    (l..r).fold(true, |acc, i| (acc && (n % i != 0)))
+    let mut i = 2;
+    while i * i <= n {
+        if n % i == 0 {
+            return false;
+        }
+        i += 1;
+    }
+    true
 }
 
 fn get_nth_prime(k: u32) -> u32 {
